@@ -1,5 +1,5 @@
 //import androidx.compose.desktop.ui.tooling.preview.Preview
-//import androidx.compose.foundation.Image
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -9,7 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-//import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -18,6 +18,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import kotlinx.coroutines.delay
 import kotlin.random.Random
+import androidx.compose.material.ButtonDefaults
 
 // --- Game Configuration ---
 const val GAME_DURATION_SECONDS = 30
@@ -140,12 +141,15 @@ fun BalloonButton(position: Pair<Float, Float>, onBalloonTapped: () -> Unit) {
             onClick = onBalloonTapped,
             shape = MaterialTheme.shapes.small,
             elevation = null,
-            contentPadding = PaddingValues(0.dp)
+            contentPadding = PaddingValues(0.dp),
+            // Make the button's background transparent
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent)
         ) {
-            // This will show a red circle as a placeholder.
-            Box(Modifier.fillMaxSize().background(Color.Red, shape = MaterialTheme.shapes.medium))
-            // --- To use a real image, uncomment the next line and add the file ---
-            // Image(painter = painterResource("balloon.png"), contentDescription = "Balloon")
+            // Use the Image composable to display your balloon graphic
+            Image(
+                painter = painterResource("balloon.png"),
+                contentDescription = "Balloon"
+            )
         }
     }
 }
